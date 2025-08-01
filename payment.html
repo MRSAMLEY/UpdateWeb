@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | Mr.SamleyStore</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-book-open logo-icon"></i>
+        Mr.SamleyStore
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html">Account</a>
+        <a href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count"></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="payment-container">
+    <h1>Complete Your Purchase</h1>
+    <p style="margin-bottom: 1rem;">Order Total: <strong>$<span id="order-total">0.00</span></strong></p>
+    
+    <div style="margin: 2rem 0; padding: 1.5rem; background: #f9f9f9; border-radius: 10px;">
+      <h3 style="margin-bottom: 1rem;">Payment Method</h3>
+      <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+        <button class="btn btn-primary" style="flex: 1;">USD QR</button>
+        <button class="btn btn-outline" style="flex: 1;">PayPal</button>
+      </div>
+      <div style="text-align: center;">
+        <p>Or pay with QR code</p>
+            <div class="qr-code">
+            <img src="assets/images/USD.jpg" alt="USD Payment" style="width: 300px; height: 500px;">
+            </div>
+        <p style="margin-top: 1rem;">Scan this QR code with your mobile payment app</p>
+      </div>
+    </div>
+    
+    <a href="success.html" class="btn btn-primary" style="width: 100%; text-align: center;">
+      Complete Payment
+    </a>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Mr.SamleyStore</h3>
+        <p>Your destination for discovering and purchasing great books from around the world.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#">New Releases</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="index.html">My Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Mr.SamleyStore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Update order total on payment page
+    document.addEventListener('DOMContentLoaded', function() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const total = cart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace('$', ''));
+        return sum + (price * item.quantity);
+      }, 0);
+      
+      document.getElementById('order-total').textContent = total.toFixed(2);
+    });
+  </script>
+</body>
+</html>

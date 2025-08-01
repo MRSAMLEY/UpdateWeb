@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | Mr.SamleyStore</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Print-specific styles */
+    @media print {
+      header, 
+      footer, 
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+        padding: 20px !important;
+      }
+      .success-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      .success-icon {
+        color: black !important;
+      }
+      .print-btn {
+        display: none !important;
+      }
+    }
+    
+    /* Additional styling for print layout */
+    .print-only {
+      display: none;
+    }
+    @media print {
+      .print-only {
+        display: block;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-book-open logo-icon"></i>
+        Mr.SamleyStore
+      </div>
+      <nav class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="index.html">Account</a>
+        <a href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count"></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="success-container">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h1 style="margin-bottom: 1rem;">Payment Successful!</h1>
+    <p style="margin-bottom: 1rem; font-size: 1.1rem;">Thank you for your purchase.</p>
+    <p style="margin-bottom: 2rem;">Your order #NB<span id="order-number">12345</span> has been confirmed and will be shipped soon.</p>
+    
+    <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+      <h3 style="margin-bottom: 1rem;">Order Summary</h3>
+      <div id="order-summary">
+        <!-- Order summary will be populated by JavaScript -->
+      </div>
+    </div>
+    
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+      <a href="index.html" class="btn btn-primary no-print" style="width: 200px; text-align: center;">
+        Continue Shopping
+      </a>
+      <button onclick="window.print()" class="btn btn-primary print-btn" style="width: 200px;">
+        <i class="fas fa-print"></i> Print Receipt
+      </button>
+    </div>
+    
+    <!-- Additional print-only content -->
+    <div class="print-only" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
+      <p>Thank you for shopping with NovelNest!</p>
+      <p>For any questions about your order, please contact support@novelnest.com</p>
+      <p>Order Date: <span id="order-date"></span></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Mr.SamleyStore</h3>
+        <p>Your destination for discovering and purchasing great books from around the world.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">New Releases</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="login.html">My Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Mr.SamleyStore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Display order details on success page
+    document.addEventListener('DOMContentLoaded', function() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const total = cart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace('$', ''));
+        return sum + (price * item.quantity);
+      }, 0);
+      
+      // Generate random order number
+      document.getElementById('order-number').textContent = Math.floor(10000 + Math.random() * 90000);
+      
+      // Set current date for print
+      const today = new Date();
+      document.getElementById('order-date').textContent = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      // Display order summary
+      const orderSummary = document.getElementById('order-summary');
+      orderSummary.innerHTML = `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span>Items (${cart.reduce((total, item) => total + item.quantity, 0)}):</span>
+          <span>$${total.toFixed(2)}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span>Shipping:</span>
+          <span>FREE</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-weight: 600;">
+          <span>Total:</span>
+          <span>$${total.toFixed(2)}</span>
+        </div>
+      `;
+      
+      // Clear cart after successful purchase
+      localStorage.removeItem('cart');
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>

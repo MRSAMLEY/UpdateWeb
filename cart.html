@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | Mr.SamleyStore</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-book-open logo-icon"></i>
+        Mr.SamleyStore
+      </div>
+      <nav class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="index.html">Account</a>
+        <a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i> (2)</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cart-container">
+    <h1 style="margin-bottom: 2rem;">Your Shopping Cart</h1>
+    
+    <div class="cart-item">
+      <div class="cart-item-img" style="background-image: url('assets/images/book1.jpg');"></div>
+      <div class="cart-item-details">
+        <h3>The Midnight Library</h3>
+        <p>By Matt Haig</p>
+        <p style="font-weight: 600; color: var(--primary); margin: 0.5rem 0;">$18.99</p>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <button style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">-</button>
+            <span>1</span>
+            <button style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">+</button>
+          </div>
+          <button style="background: none; border: none; color: var(--danger); cursor: pointer;">
+            <i class="fas fa-trash"></i> Remove
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cart-item">
+      <div class="cart-item-img" style="background-image: url('assets/images/book2.jpg');"></div>
+      <div class="cart-item-details">
+        <h3>Atomic Habits</h3>
+        <p>By James Clear</p>
+        <p style="font-weight: 600; color: var(--primary); margin: 0.5rem 0;">$16.49</p>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <button style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">-</button>
+            <span>1</span>
+            <button style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">+</button>
+          </div>
+          <button style="background: none; border: none; color: var(--danger); cursor: pointer;">
+            <i class="fas fa-trash"></i> Remove
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cart-summary">
+      <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+        <span>Subtotal (2 items)</span>
+        <span>$35.48</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+        <span>Shipping</span>
+        <span>FREE</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-weight: 600; font-size: 1.1rem;">
+        <span>Total</span>
+        <span>$35.48</span>
+      </div>
+      <a href="payment.html" class="btn btn-primary" style="width: 100%; text-align: center;">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Mr.SamleyStore</h3>
+        <p>Your destination for discovering and purchasing great books from around the world.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">New Releases</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="login.html">My Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Mr.SamleyStore. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
