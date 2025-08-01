@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Register Mr.SamleyStore</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-book-open logo-icon"></i>
+        Mr.SamleyStore
+      </div>
+      <nav class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="index.html" class="active">Login</a>
+        <a href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count"></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-container">
+    <!-- Login Form (default view) -->
+    <div class="auth-form" id="login-form">
+      <h1 style="text-align: center; margin-bottom: 2rem;">Welcome Back</h1>
+      <form id="login">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+      </form>
+      <p style="text-align: center; margin-top: 1.5rem;">
+        Don't have an account? <a href="#" id="show-register" style="color: var(--primary);">Sign up</a>
+      </p>
+      <div style="text-align: center; margin-top: 2rem;">
+        <p>Or login with:</p>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+          <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+            <i class="fab fa-google"></i>
+          </button>
+          <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+            <i class="fab fa-twitter"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Form (hidden by default) -->
+    <div class="auth-form" id="register-form" style="display: none;">
+      <h1 style="text-align: center; margin-bottom: 2rem;">Create Account</h1>
+      <form id="register" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-group">
+          <label for="register-name">Full Name</label>
+          <input type="text" id="register-name" name="name" class="form-control" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email Address</label>
+          <input type="email" id="register-email" name="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" name="password" class="form-control" placeholder="Create a password" required>
+        </div>
+        <div class="form-group">
+          <label for="register-confirm">Confirm Password</label>
+          <input type="password" id="register-confirm" class="form-control" placeholder="Confirm your password" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms" style="display: inline; margin-left: 0.5rem;">
+            I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+      </form>
+      <p style="text-align: center; margin-top: 1.5rem;">
+        Already have an account? <a href="#" id="show-login" style="color: var(--primary);">Log in</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Mr.SamleyStore</h3>
+        <p>Your destination for discovering and purchasing great books from around the world.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">New Releases</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="login.html">My Account</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Mr.SamleyStore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Toggle between login and register forms
+    document.getElementById('show-register').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('register-form').style.display = 'block';
+    });
+
+    document.getElementById('show-login').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('register-form').style.display = 'none';
+      document.getElementById('login-form').style.display = 'block';
+    });
+
+    // Password confirmation validation
+    const registerForm = document.getElementById('register');
+    registerForm.addEventListener('submit', function(e) {
+      const password = document.getElementById('register-password').value;
+      const confirm = document.getElementById('register-confirm').value;
+      
+      if (password !== confirm) {
+        e.preventDefault();
+        alert('Passwords do not match!');
+        return false;
+      }
+      return true;
+    });
+
+    // Handle form submission feedback
+    registerForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(registerForm);
+      try {
+        const response = await fetch(registerForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          registerForm.reset();
+          alert('Registration successful! Please check your email to verify your account.');
+          document.getElementById('register-form').style.display = 'none';
+          document.getElementById('login-form').style.display = 'block';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        alert('There was a problem with your registration. Please try again.');
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>
